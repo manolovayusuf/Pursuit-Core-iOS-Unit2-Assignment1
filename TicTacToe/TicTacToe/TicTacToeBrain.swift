@@ -8,6 +8,6 @@
 
 import Foundation
 
-class TicTacToeBrain {
+class TicTacToeBrain { //answers win or loose, your logic functions, wint check, where the x, and o is, whoes turn it is 
   
 }
