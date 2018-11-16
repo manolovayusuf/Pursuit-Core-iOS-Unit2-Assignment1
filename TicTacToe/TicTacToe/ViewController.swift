@@ -8,14 +8,44 @@
 
 import UIKit
 
-class ViewController: UIViewController { //are the buttons enabled or not that is a func thats embeded here
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var winnerLabel: UILabel!
+    
+    @IBOutlet var buttons: [GameButton]!
+    
+    let myBrain = TicTacToeBrain()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    print("We are making tic tac toe!")
-  }
-
-
+    @IBAction func pressedButton(_ sender: GameButton) {
+        myBrain.usersMove()
+if myBrain.userOne {
+    myBrain.gameArray[sender.row][sender.col] = o
+    sender.setBackgroundImage(UIImage.init(named: "otictactoe"), for: .normal)
+    sender.isEnabled = false
+    myBrain.winningResult()
+    if myBrain.userOneWins {
+        winnerLabel.text = "Ya won player one"
+    }
+} else if myBrain.userTwo {
+    myBrain.gameArray[sender.row][sender.col] = x
+    sender.setBackgroundImage(UIImage.init(named: "Xtictactoe"), for: .normal)
+    sender.isEnabled = false
+    myBrain.winningResult()
+    if myBrain.userTwoWins {
+        winnerLabel.text = "Ya won player two"
+    }
+        }
+    }
+    @IBAction func newGame(_ sender: UIButton) {
+        
+        //winnerLabel
+        buttons.forEach { $0.setBackgroundImage(nil, for: .normal )}
+        buttons.forEach { $0.isEnabled = true}
+    }
 }
 
